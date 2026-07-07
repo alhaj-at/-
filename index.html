@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>
+الحاج تكنولوجي | اختبار أساسيات الحاسوب
+</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Cairo',sans-serif;
+}
+
+body{
+
+background:#071321;
+
+overflow-x:hidden;
+
+color:white;
+
+}
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+width:600px;
+
+height:600px;
+
+background:#0066ff33;
+
+filter:blur(160px);
+
+top:-250px;
+
+left:-150px;
+
+z-index:-1;
+
+}
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+width:700px;
+
+height:700px;
+
+background:#00e5ff22;
+
+filter:blur(180px);
+
+bottom:-300px;
+
+right:-250px;
+
+z-index:-1;
+
+}
+
+.container{
+
+max-width:900px;
+
+margin:auto;
+
+padding:40px;
+
+}
+
+.logo{
+
+font-size:42px;
+
+font-weight:900;
+
+text-align:center;
+
+color:#00d9ff;
+
+margin-bottom:10px;
+
+text-shadow:
+
+0 0 15px #00d9ff,
+
+0 0 35px #00d9ff;
+
+}
+
+.subtitle{
+
+text-align:center;
+
+opacity:.8;
+
+margin-bottom:40px;
+
+}
+
+.card{
+
+background:#101d33;
+
+border:1px solid #1f4068;
+
+padding:35px;
+
+border-radius:20px;
+
+box-shadow:
+
+0 0 40px #000;
+
+animation:fade .5s;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+button{
+
+cursor:pointer;
+
+border:none;
+
+padding:16px 30px;
+
+border-radius:12px;
+
+background:#00bfff;
+
+font-size:18px;
+
+font-weight:bold;
+
+color:white;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:scale(1.05);
+
+background:#0099ff;
+
+}
+
+.start{
+
+display:flex;
+
+justify-content:center;
+
+margin-top:30px;
+
+}
+
+.progress{
+
+height:12px;
+
+background:#1a2a45;
+
+border-radius:20px;
+
+overflow:hidden;
+
+margin:25px 0;
+
+}
+
+.progress span{
+
+display:block;
+
+height:100%;
+
+width:0%;
+
+background:linear-gradient(90deg,#00d9ff,#008cff);
+
+transition:.4s;
+
+}
+
+.timer{
+
+font-size:22px;
+
+font-weight:bold;
+
+color:#00d9ff;
+
+text-align:center;
+
+margin-bottom:20px;
+
+}
+
+.question{
+
+font-size:26px;
+
+font-weight:700;
+
+margin-bottom:25px;
+
+line-height:1.7;
+
+}
+
+.option{
+
+background:#162642;
+
+padding:18px;
+
+margin-bottom:15px;
+
+border-radius:12px;
+
+cursor:pointer;
+
+border:2px solid transparent;
+
+transition:.25s;
+
+}
+
+.option:hover{
+
+background:#20385f;
+
+}
+
+.option.selected{
+
+border-color:#00d9ff;
+
+background:#23456f;
+
+}
+
+.next{
+
+margin-top:25px;
+
+width:100%;
+
+}
+
+.resultCircle{
+
+width:220px;
+
+height:220px;
+
+border-radius:50%;
+
+margin:auto;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:50px;
+
+font-weight:bold;
+
+background:
+conic-gradient(
+#00d9ff 0deg,
+#008cff var(--deg),
+#23334d var(--deg),
+#23334d 360deg);
+
+}
+
+.level{
+
+font-size:34px;
+
+font-weight:900;
+
+text-align:center;
+
+margin-top:30px;
+
+color:#00d9ff;
+
+}
+
+.stats{
+
+margin-top:25px;
+
+font-size:22px;
+
+line-height:2;
+
+text-align:center;
+
+}
+
+.review{
+
+margin-top:40px;
+
+}
+
+.review h2{
+
+margin-bottom:15px;
+
+}
+
+.reviewItem{
+
+padding:14px;
+
+margin-bottom:12px;
+
+background:#162642;
+
+border-radius:10px;
+
+}
+
+footer{
+
+text-align:center;
+
+margin-top:50px;
+
+opacity:.6;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+الحاج تكنولوجي
+</div>
+
+<div class="subtitle">
+اختبار احترافي في أساسيات الحاسوب
+</div>
+
+<div id="app" class="card">
+
+<h1 style="text-align:center;">
+مرحباً بك
+</h1>
+
+<p style="margin-top:25px;font-size:20px;line-height:2;text-align:center;">
+
+هذا الاختبار يتكون من
+
+<b>15 سؤالاً</b>
+
+وسيتم اختيارها عشوائياً من بنك أسئلة كبير.
+
+بعد الانتهاء ستحصل على:
+
+<br><br>
+
+✅ النسبة المئوية
+
+<br>
+
+✅ تقييم المستوى
+
+<br>
+
+✅ مراجعة الأخطاء
+
+<br>
+
+✅ أفضل نتيجة
+
+</p>
+
+<div class="start">
+
+<button onclick="startQuiz()">
+
+ابدأ الاختبار
+
+</button>
+
+</div>
+
+</div>
+
+<footer>
+
+© الحاج تكنولوجي
+
+</footer>
+
+</div>
+
+<script>
+
+const questionBank=[
+{
+question:"ما هو المكون المسؤول عن تنفيذ العمليات داخل الحاسوب؟",
+options:[
+"وحدة المعالجة المركزية CPU",
+"القرص الصلب HDD",
+"ذاكرة RAM",
+"بطاقة الشاشة"
+],
+answer:0
+},
+
+{
+question:"ما وظيفة ذاكرة RAM؟",
+options:[
+"تخزين البيانات مؤقتاً",
+"تخزين دائم",
+"تشغيل الشاشة",
+"الاتصال بالإنترنت"
+],
+answer:0
+},
+
+{
+question:"أي امتداد يستخدم لملفات صفحات الويب؟",
+options:[
+".html",
+".mp3",
+".exe",
+".png"
+],
+answer:0
+},
+
+{
+question:"أي برنامج يعتبر متصفح إنترنت؟",
+options:[
+"Google Chrome",
+"Microsoft Word",
+"Photoshop",
+"Excel"
+],
+answer:0
+},
+
+{
+question:"ما هو نظام التشغيل؟",
+options:[
+"برنامج يدير موارد الحاسوب",
+"برنامج للرسم",
+"برنامج لتحرير الصور",
+"موقع إلكتروني"
+],
+answer:0
+},
+
+{
+question:"أي جهاز يستخدم لإدخال النصوص؟",
+options:[
+"لوحة المفاتيح",
+"الشاشة",
+"السماعات",
+"الطابعة"
+],
+answer:0
+},
+
+{
+question:"أي جهاز يستخدم لإخراج المستندات على الورق؟",
+options:[
+"الطابعة",
+"الفأرة",
+"لوحة المفاتيح",
+"الماسح الضوئي"
+],
+answer:0
+},
+
+{
+question:"SSD يعتبر...",
+options:[
+"أسرع من HDD",
+"أبطأ من HDD",
+"نفس السرعة",
+"ليس وحدة تخزين"
+],
+answer:0
+},
+
+{
+question:"ماذا يعني USB؟",
+options:[
+"منفذ لتوصيل الأجهزة",
+"نظام تشغيل",
+"برنامج حماية",
+"نوع شاشة"
+],
+answer:0
+},
+
+{
+question:"أي برنامج يستخدم لمعالجة النصوص؟",
+options:[
+"Microsoft Word",
+"PowerPoint",
+"Chrome",
+"Paint"
+],
+answer:0
+},
+
+{
+question:"اختصار WWW يعني:",
+options:[
+"الشبكة العالمية",
+"نظام تشغيل",
+"معالج",
+"برنامج حماية"
+],
+answer:0
+},
+
+{
+question:"زر Ctrl + C يستخدم لـ:",
+options:[
+"نسخ",
+"قص",
+"لصق",
+"حذف"
+],
+answer:0
+},
+
+{
+question:"زر Ctrl + V يستخدم لـ:",
+options:[
+"لصق",
+"نسخ",
+"طباعة",
+"بحث"
+],
+answer:0
+},
+
+{
+question:"زر Ctrl + Z يستخدم لـ:",
+options:[
+"التراجع",
+"الحفظ",
+"الإغلاق",
+"التحديث"
+],
+answer:0
+},
+
+{
+question:"أي امتداد يعتبر صورة؟",
+options:[
+".png",
+".mp4",
+".zip",
+".pdf"
+],
+answer:0
+},
+
+{
+question:"أي امتداد يعتبر فيديو؟",
+options:[
+".mp4",
+".jpg",
+".txt",
+".docx"
+],
+answer:0
+},
+
+{
+question:"أي امتداد يعتبر ملف صوت؟",
+options:[
+".mp3",
+".png",
+".pdf",
+".exe"
+],
+answer:0
+},
+
+{
+question:"ما هو البريد الإلكتروني؟",
+options:[
+"وسيلة لإرسال واستقبال الرسائل",
+"نوع معالج",
+"قرص صلب",
+"برنامج للرسم"
+],
+answer:0
+},
+
+{
+question:"GitHub هو:",
+options:[
+"منصة لاستضافة الأكواد البرمجية",
+"نظام تشغيل",
+"برنامج حماية",
+"متصفح"
+],
+answer:0
+},
+
+{
+question:"ما وظيفة الجدار الناري Firewall؟",
+options:[
+"حماية الجهاز",
+"تشغيل الألعاب",
+"عرض الفيديو",
+"تشغيل الصوت"
+],
+answer:0
+},
+
+{
+question:"أي جهاز يستخدم لتحريك المؤشر؟",
+options:[
+"الفأرة",
+"السماعات",
+"الشاشة",
+"الطابعة"
+],
+answer:0
+},
+
+{
+question:"برنامج Excel يستخدم لـ:",
+options:[
+"الجداول الإلكترونية",
+"تحرير الفيديو",
+"الرسم",
+"التصفح"
+],
+answer:0
+},
+
+{
+question:"برنامج PowerPoint يستخدم لـ:",
+options:[
+"العروض التقديمية",
+"البرمجة",
+"تصفح الإنترنت",
+"إدارة الملفات"
+],
+answer:0
+},
+
+{
+question:"أي مفتاح يستخدم لتحديث الصفحة؟",
+options:[
+"F5",
+"F1",
+"F8",
+"F12"
+],
+answer:0
+},
+
+{
+question:"الإنترنت هو:",
+options:[
+"شبكة عالمية",
+"قرص صلب",
+"معالج",
+"برنامج"
+],
+answer:0
+},
+{
+question:"ما وظيفة نظام التشغيل؟",
+options:[
+"إدارة موارد الحاسوب وتشغيل البرامج",
+"طباعة المستندات",
+"عرض الصور فقط",
+"تشغيل الموسيقى"
+],
+answer:0
+},
+
+{
+question:"أي من التالي يعتبر نظام تشغيل؟",
+options:[
+"Windows",
+"Chrome",
+"Photoshop",
+"Word"
+],
+answer:0
+},
+
+{
+question:"أي من التالي يعتبر محرك بحث؟",
+options:[
+"Google",
+"Windows",
+"Excel",
+"PowerPoint"
+],
+answer:0
+},
+
+{
+question:"ما وظيفة بطاقة الشاشة GPU؟",
+options:[
+"معالجة الرسومات والفيديو",
+"حفظ الملفات",
+"الاتصال بالإنترنت",
+"تشغيل لوحة المفاتيح"
+],
+answer:0
+},
+
+{
+question:"ما هو عنوان IP؟",
+options:[
+"عنوان يميز الجهاز على الشبكة",
+"نوع من المعالجات",
+"امتداد صورة",
+"برنامج حماية"
+],
+answer:0
+},
+
+{
+question:"أي من التالي يعتبر متصفح ويب؟",
+options:[
+"Microsoft Edge",
+"Excel",
+"Paint",
+"Access"
+],
+answer:0
+},
+
+{
+question:"امتداد PDF يستخدم لـ:",
+options:[
+"المستندات",
+"الفيديو",
+"الصور",
+"الألعاب"
+],
+answer:0
+},
+
+{
+question:"القرص الصلب HDD يستخدم لـ:",
+options:[
+"تخزين البيانات",
+"عرض الفيديو",
+"تشغيل الصوت",
+"الاتصال بالشبكة"
+],
+answer:0
+},
+
+{
+question:"أي مفتاح يستخدم للمساعدة في أغلب البرامج؟",
+options:[
+"F1",
+"F2",
+"F6",
+"F9"
+],
+answer:0
+},
+
+{
+question:"Ctrl + S يستخدم لـ:",
+options:[
+"حفظ الملف",
+"نسخ",
+"لصق",
+"طباعة"
+],
+answer:0
+},
+
+{
+question:"Ctrl + P يستخدم لـ:",
+options:[
+"الطباعة",
+"الحفظ",
+"البحث",
+"الإغلاق"
+],
+answer:0
+},
+
+{
+question:"أي من التالي جهاز إدخال؟",
+options:[
+"الماسح الضوئي",
+"الشاشة",
+"الطابعة",
+"السماعات"
+],
+answer:0
+},
+
+{
+question:"أي من التالي جهاز إخراج؟",
+options:[
+"الشاشة",
+"الفأرة",
+"لوحة المفاتيح",
+"الماسح الضوئي"
+],
+answer:0
+},
+
+{
+question:"أي برنامج يستخدم لتحرير الصور؟",
+options:[
+"Adobe Photoshop",
+"Word",
+"Excel",
+"Chrome"
+],
+answer:0
+},
+
+{
+question:"ما هو الإنترنت؟",
+options:[
+"شبكة تربط ملايين الأجهزة حول العالم",
+"قرص صلب",
+"معالج",
+"نظام تشغيل"
+],
+answer:0
+},
+
+{
+question:"ما المقصود بالفيروسات الإلكترونية؟",
+options:[
+"برامج ضارة",
+"برامج تعليمية",
+"ملفات صوتية",
+"ملفات صور"
+],
+answer:0
+},
+
+{
+question:"أفضل وسيلة لحماية الحسابات هي:",
+options:[
+"كلمة مرور قوية",
+"استخدام اسمك فقط",
+"عدم تغيير كلمة المرور أبداً",
+"مشاركة كلمة المرور"
+],
+answer:0
+},
+
+{
+question:"أي من التالي خدمة تخزين سحابي؟",
+options:[
+"Google Drive",
+"Paint",
+"Notepad",
+"Calculator"
+],
+answer:0
+},
+
+{
+question:"امتداد ZIP يستخدم لـ:",
+options:[
+"ضغط الملفات",
+"الفيديو",
+"الصوت",
+"الصور"
+],
+answer:0
+},
+
+{
+question:"ما وظيفة برنامج مكافحة الفيروسات؟",
+options:[
+"اكتشاف وإزالة البرمجيات الضارة",
+"تشغيل الألعاب",
+"تصفح الإنترنت",
+"تحرير الصور"
+],
+answer:0
+},
+
+{
+question:"أي من التالي يمثل لغة برمجة؟",
+options:[
+"Python",
+"Windows",
+"Chrome",
+"Excel"
+],
+answer:0
+},
+
+{
+question:"HTML تستخدم في:",
+options:[
+"بناء صفحات الويب",
+"تصميم الصور",
+"تشغيل الألعاب",
+"معالجة النصوص"
+],
+answer:0
+},
+
+{
+question:"CSS تستخدم في:",
+options:[
+"تنسيق صفحات الويب",
+"تشغيل الفيديو",
+"إدارة الملفات",
+"ضغط البيانات"
+],
+answer:0
+},
+
+{
+question:"JavaScript تستخدم في:",
+options:[
+"إضافة التفاعل إلى صفحات الويب",
+"تشغيل الطابعة",
+"ضغط الملفات",
+"حذف الفيروسات"
+],
+answer:0
+},
+
+{
+question:"أي من التالي يعتبر قاعدة بيانات؟",
+options:[
+"MySQL",
+"Chrome",
+"Paint",
+"Word"
+],
+answer:0
+},
+{
+question:"أي جهاز يقوم بتحويل الإشارات الرقمية إلى إشارات يمكن إرسالها عبر الإنترنت؟",
+options:[
+"المودم",
+"الماسح الضوئي",
+"الطابعة",
+"الشاشة"
+],
+answer:0
+},
+
+{
+question:"أي من التالي يعتبر نظام تشغيل للهواتف الذكية؟",
+options:[
+"Android",
+"Excel",
+"Chrome",
+"Photoshop"
+],
+answer:0
+},
+
+{
+question:"امتداد DOCX يستخدم لـ:",
+options:[
+"مستندات Word",
+"ملفات فيديو",
+"ملفات مضغوطة",
+"صور"
+],
+answer:0
+},
+
+{
+question:"أي من التالي يعتبر متصفح ويب؟",
+options:[
+"Firefox",
+"PowerPoint",
+"Visual Studio",
+"Access"
+],
+answer:0
+},
+
+{
+question:"أي اختصار يستخدم للبحث داخل الصفحة؟",
+options:[
+"Ctrl + F",
+"Ctrl + N",
+"Ctrl + W",
+"Ctrl + H"
+],
+answer:0
+},
+
+{
+question:"أي جهاز يعتبر وحدة إخراج؟",
+options:[
+"السماعات",
+"الفأرة",
+"لوحة المفاتيح",
+"الماسح الضوئي"
+],
+answer:0
+},
+
+{
+question:"ما هو DNS؟",
+options:[
+"نظام تحويل أسماء المواقع إلى عناوين IP",
+"برنامج حماية",
+"لغة برمجة",
+"قرص تخزين"
+],
+answer:0
+},
+
+{
+question:"أي من التالي يستخدم لإنشاء قواعد البيانات؟",
+options:[
+"MySQL",
+"Word",
+"Chrome",
+"Paint"
+],
+answer:0
+},
+
+{
+question:"ما هو البريد العشوائي (Spam)؟",
+options:[
+"رسائل غير مرغوب فيها",
+"برنامج حماية",
+"نظام تشغيل",
+"متصفح"
+],
+answer:0
+},
+
+{
+question:"أي من التالي يعتبر لغة توصيف؟",
+options:[
+"HTML",
+"Python",
+"C++",
+"Java"
+],
+answer:0
+},
+
+{
+question:"ما وظيفة CSS؟",
+options:[
+"تنسيق صفحات الويب",
+"إدارة قواعد البيانات",
+"تشغيل الفيديو",
+"ضغط الملفات"
+],
+answer:0
+},
+
+{
+question:"أي من التالي يعتبر محرر أكواد؟",
+options:[
+"Visual Studio Code",
+"PowerPoint",
+"Excel",
+"Media Player"
+],
+answer:0
+},
+
+{
+question:"أي امتداد يمثل ملف JavaScript؟",
+options:[
+".js",
+".css",
+".html",
+".jpg"
+],
+answer:0
+},
+
+{
+question:"ما هو Git؟",
+options:[
+"نظام لإدارة إصدارات المشاريع",
+"متصفح ويب",
+"برنامج رسم",
+"مضاد فيروسات"
+],
+answer:0
+},
+
+{
+question:"ما وظيفة GitHub؟",
+options:[
+"استضافة المشاريع البرمجية ومشاركتها",
+"تشغيل الألعاب",
+"معالجة الصور",
+"تشغيل الفيديو"
+],
+answer:0
+},
+
+{
+question:"أي بروتوكول يستخدم لتصفح المواقع؟",
+options:[
+"HTTP",
+"FTP",
+"SMTP",
+"SSH"
+],
+answer:0
+},
+
+{
+question:"ما البروتوكول الآمن لتصفح المواقع؟",
+options:[
+"HTTPS",
+"FTP",
+"POP3",
+"SMTP"
+],
+answer:0
+},
+
+{
+question:"أي من التالي يستخدم لإرسال البريد الإلكتروني؟",
+options:[
+"SMTP",
+"HTTP",
+"FTP",
+"DNS"
+],
+answer:0
+},
+
+{
+question:"أي من التالي يستخدم لاستقبال البريد الإلكتروني؟",
+options:[
+"IMAP",
+"HTML",
+"CSS",
+"SSH"
+],
+answer:0
+},
+
+{
+question:"أي من التالي يعتبر لغة برمجة؟",
+options:[
+"Java",
+"PNG",
+"PDF",
+"ZIP"
+],
+answer:0
+},
+
+{
+question:"أي برنامج يستخدم لتحرير النصوص البرمجية؟",
+options:[
+"Visual Studio Code",
+"Excel",
+"Word",
+"Paint"
+],
+answer:0
+},
+
+{
+question:"أي من التالي يعتبر تخزينًا سحابيًا؟",
+options:[
+"OneDrive",
+"CPU",
+"RAM",
+"GPU"
+],
+answer:0
+},
+
+{
+question:"ما وظيفة وحدة المعالجة المركزية؟",
+options:[
+"تنفيذ التعليمات والعمليات",
+"عرض الصور",
+"تشغيل الإنترنت",
+"تخزين الملفات"
+],
+answer:0
+},
+
+{
+question:"أي من التالي يعتبر متصفحًا من شركة Microsoft؟",
+options:[
+"Edge",
+"Opera",
+"Firefox",
+"Safari"
+],
+answer:0
+},
+
+{
+question:"أي من التالي يستخدم لربط الحاسوب بالشبكة اللاسلكية؟",
+options:[
+"Wi-Fi",
+"RAM",
+"SSD",
+"GPU"
+],
+answer:0
